@@ -18,6 +18,7 @@ model Store {
   sizes           Size[]     @relation("StoreToSize")
   colors          Color[]     @relation("StoreToColor")
   orders          Order[]     @relation("StoreToOrder")
+  users           User[]      @relation("StoreToUser") 
   createdAt       DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
 }
@@ -26,7 +27,14 @@ model User {
   id String @id @default(uuid())
   name String
   address String
+  phone String
   orders Order[]
+  storeId     String    // Foreign Key to Store
+  store       Store     @relation("StoreToUser", fields: [storeId], references: [id])
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@index([storeId])
 }
 
 model Billboard {
