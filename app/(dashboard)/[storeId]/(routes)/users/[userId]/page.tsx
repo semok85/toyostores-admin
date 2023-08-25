@@ -2,14 +2,14 @@ import prismadb from "@/lib/prismadb";
 
 import { UserForm } from "./components/user-form";
 
-const SizePage = async ({
+const UserPage = async ({
   params
 }: {
-  params: { sizeId: string }
+  params: { userId: string }
 }) => {
   const user = await prismadb.user.findFirst({
     where: {
-      id: params.sizeId
+      id: params.userId
     }
   });
 
@@ -22,4 +22,4 @@ const SizePage = async ({
   );
 }
 
-export default SizePage;
+export default UserPage;
