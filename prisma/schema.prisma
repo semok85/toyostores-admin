@@ -26,8 +26,9 @@ model Store {
 model User {
   id String @id @default(uuid())
   name String
-  address String
-  phone String
+  email String @unique
+  address String @default("")
+  phone String @default("")
   orders Order[]
   storeId     String    // Foreign Key to Store
   store       Store     @relation("StoreToUser", fields: [storeId], references: [id])

@@ -12,15 +12,15 @@ export async function GET(
       return new NextResponse("User id is required", { status: 400 });
     }
 
-    const size = await prismadb.size.findUnique({
+    const user = await prismadb.user.findUnique({
       where: {
         id: params.userId
       }
     });
   
-    return NextResponse.json(size);
+    return NextResponse.json(user);
   } catch (error) {
-    console.log('[SIZE_GET]', error);
+    console.log('[USER_GET]', error);
     return new NextResponse("Internal error", { status: 500 });
   }
 };
